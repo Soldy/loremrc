@@ -5,6 +5,10 @@ const loremBase = function(){
     this.word = function(size){
         return _word(size);
     }
+    this.stence = function(size){
+        return _stence(size);
+    }
+    const _stence_end = ['.','.','.','.','?','!'];
     const _single = ['a','e','i','o','u'];
     const _multi = ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','x','y','z'];
     const _single_double = ['ei','ie','io','iu','oi','ua','ui']
@@ -19,8 +23,8 @@ const loremBase = function(){
     ];
     let _type = '';
     let _size = 9;
-    const _one_word = ['a', 'o'];
-    const _two_word = ['an', 'la', 'do', 'qo'];
+    const _one_word = ['a','i','o'];
+    const _two_word = ['an','az','la', 'do', 'qo','it','is','me','we'];
     const _any = function(){
         if(Math.random()*2 > 1){
             return _one();
@@ -62,11 +66,14 @@ const loremBase = function(){
             )
         ];
     }
+    const _sizeGenerator = function(size){
+        if(typeof size === 'undefined')
+            return size = Math.floor(Math.random()*11)+1;
+        return size;
+    }
     const _word = function(size){
         let word = '';
-        if(typeof size === 'undefined')
-            size = Math.floor(Math.random()*11)+1;
-        _size = size;
+        size = _sizeGenerator(size);
         if(size === 0)
             return '';
         if(size === 1)
@@ -88,6 +95,21 @@ const loremBase = function(){
         }
         return word;
     };
+    const _firstUpper = function(word){
+       return word.charAt(0).toUpperCase()+word.slice(1);
+    }
+    const _stence = function(size){
+        let stence = _firstUpper(
+            _word()
+        );
+        size = _sizeGenerator(size);
+        for (let i = 1 ; size > i; i++)
+            stence += ' '+_word();
+        stence +=_formArray(
+            _stence_end
+        );
+        return stence;
+    }
 }
 
 exports.base = loremBase;
