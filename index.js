@@ -1,17 +1,57 @@
+/*
+ *  @Soldy\initrc\2021.07.21\GPL3
+ */
 'use strict';
 
 
+
+/*
+ * @prototype
+ */
 const loremBase = function(){
+    /**
+     * @param {integer}
+     * @public
+     * @return {string}
+     */
     this.word = function(size){
         return _word(size);
     }
+    /**
+     * @param {integer}
+     * @public
+     * @return {string}
+     */
     this.stence = function(size){
         return _stence(size);
     }
+    /**
+     * @param {integer}
+     * @public
+     * @return {string}
+     */
+    this.paragraph = function(size){
+        return _paragraph(size);
+    }
+    /*
+     * @const {array}
+     */
     const _stence_end = ['.','.','.','.','?','!'];
+    /*
+     * @const {array}
+     */
     const _single = ['a','e','i','o','u'];
+    /*
+     * @const {array}
+     */
     const _multi = ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','x','y','z'];
+    /*
+     * @const {array}
+     */
     const _single_double = ['ei','ie','io','iu','oi','ua','ui']
+    /*
+     * @const {array}
+     */
     const _multi_double = [
         'cc','ch','ct','cr','dd',
         'dh','dm','dr','dv','ff',
@@ -21,10 +61,26 @@ const loremBase = function(){
         'pg','rd','rt','sp','st',
         'ss','tr','tp'
     ];
+    /*
+     * @var {string}
+     */
     let _type = '';
+    /*
+     * @var {integer}
+     */
     let _size = 9;
+    /*
+     * @const {array}
+     */
     const _one_word = ['a','i','o'];
+    /*
+     * @const {array}
+     */
     const _two_word = ['an','az','la', 'do', 'qo','it','is','me','we'];
+    /**
+     * @private
+     * @return {string}
+     */
     const _any = function(){
         if(Math.random()*5 > 1){
             return _one();
@@ -32,6 +88,10 @@ const loremBase = function(){
             return _double();
         }
     }
+    /**
+     * @private
+     * @return {string}
+     */
     const _one = function(){
          if(_type === 'multi'){
              _type = 'single';
@@ -45,6 +105,10 @@ const loremBase = function(){
              );
          }
     }
+    /**
+     * @private
+     * @return {string}
+     */
     const _double = function(){
          if(_type === 'multi'){
              _type = 'single';
@@ -59,6 +123,11 @@ const loremBase = function(){
          }
 
     }
+    /**
+     * @param {array}
+     * @private
+     * @return {string}
+     */
     const _formArray = function(arr){
         return arr[
             Math.floor(
@@ -66,11 +135,21 @@ const loremBase = function(){
             )
         ];
     }
+    /**
+     * @param {integer}
+     * @private
+     * @return {integer}
+     */
     const _wordSizeGenerator = function(size){
         if(typeof size === 'undefined')
             return size = Math.floor(Math.random()*6)+3;
         return size;
     }
+    /**
+     * @param {integer}
+     * @private
+     * @return {string}
+     */
     const _word = function(size){
         let word = '';
         size = _wordSizeGenerator(size);
@@ -95,14 +174,29 @@ const loremBase = function(){
         }
         return word;
     };
+    /**
+     * @param {string}
+     * @private
+     * @return {string}
+     */
     const _firstUpper = function(word){
        return word.charAt(0).toUpperCase()+word.slice(1);
     }
+    /**
+     * @param {integer}
+     * @private
+     * @return {integer}
+     */
     const _stenceSizeGenerator = function(size){
         if(typeof size === 'undefined')
             return size = Math.floor(Math.random()*18)+3;
         return size;
     }
+    /**
+     * @param {integer}
+     * @private
+     * @return {string}
+     */
     const _stence = function(size){
         let stence = _firstUpper(
             _word()
@@ -120,6 +214,28 @@ const loremBase = function(){
             _stence_end
         );
         return stence;
+    }
+    /**
+     * @param {integer}
+     * @private
+     * @return {integer}
+     */
+    const _paragraphSizeGenerator = function(size){
+        if(typeof size === 'undefined')
+            return size = Math.floor(Math.random()*18)+5;
+        return size;
+    }
+    /**
+     * @param {integer}
+     * @private
+     * @return {string}
+     */
+    const _paragraph = function(size){
+        let paragraph = '    '+_stence();
+        size = _paragraphSizeGenerator(size);
+        for (let i = 1 ; size > i; i++)
+            paragraph += ' '+_stence();
+        return paragraph;
     }
 }
 
