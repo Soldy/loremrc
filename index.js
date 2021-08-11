@@ -121,7 +121,7 @@ const loremBase = function(){
      * @return {string}
      */
     const _formArray = function(arr){
-        return arr[Math.floor(Math.random()*arr.length];
+        return arr[Math.floor(Math.random()*arr.length)];
     }
     /**
      * @param {integer}
