@@ -95,14 +95,10 @@ const loremBase = function(){
     const _one = function(){
          if(_type === 'multi'){
              _type = 'single';
-             return _formArray(
-                 _single
-             );
+             return _formArray(_single);
          }else{
              _type = 'multi';
-             return _formArray(
-                 _multi
-             );
+             return _formArray(_multi);
          }
     }
     /**
@@ -112,14 +108,10 @@ const loremBase = function(){
     const _double = function(){
          if(_type === 'multi'){
              _type = 'single';
-             return _formArray(
-                 _single_double
-             );
+             return _formArray(_single_double);
          }else{
              _type = 'multi';
-             return _formArray(
-                 _multi_double
-             );
+             return _formArray(_multi_double);
          }
 
     }
@@ -129,11 +121,7 @@ const loremBase = function(){
      * @return {string}
      */
     const _formArray = function(arr){
-        return arr[
-            Math.floor(
-                (Math.random()*arr.length)
-            )
-        ];
+        return arr[Math.floor(Math.random()*arr.length];
     }
     /**
      * @param {integer}
