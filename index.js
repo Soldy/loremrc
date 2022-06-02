@@ -16,7 +16,7 @@ const loremBase = function(){
      */
     this.word = function(size){
         return _word(size);
-    }
+    };
     /**
      * @param {integer}
      * @public
@@ -24,7 +24,7 @@ const loremBase = function(){
      */
     this.stence = function(size){
         return _stence(size);
-    }
+    };
     /**
      * @param {integer}
      * @public
@@ -32,7 +32,7 @@ const loremBase = function(){
      */
     this.paragraph = function(size){
         return _paragraph(size);
-    }
+    };
     /*
      * @const {array}
      */
@@ -48,7 +48,7 @@ const loremBase = function(){
     /*
      * @const {array}
      */
-    const _single_double = ['ei','ie','io','iu','oi','ua','ui']
+    const _single_double = ['ei','ie','io','iu','oi','ua','ui'];
     /*
      * @const {array}
      */
@@ -87,34 +87,34 @@ const loremBase = function(){
         }else{
             return _double();
         }
-    }
+    };
     /**
      * @private
      * @return {string}
      */
     const _one = function(){
-         if(_type === 'multi'){
-             _type = 'single';
-             return _formArray(_single);
-         }else{
-             _type = 'multi';
-             return _formArray(_multi);
-         }
-    }
+        if(_type === 'multi'){
+            _type = 'single';
+            return _formArray(_single);
+        }else{
+            _type = 'multi';
+            return _formArray(_multi);
+        }
+    };
     /**
      * @private
      * @return {string}
      */
     const _double = function(){
-         if(_type === 'multi'){
-             _type = 'single';
-             return _formArray(_single_double);
-         }else{
-             _type = 'multi';
-             return _formArray(_multi_double);
-         }
+        if(_type === 'multi'){
+            _type = 'single';
+            return _formArray(_single_double);
+        }else{
+            _type = 'multi';
+            return _formArray(_multi_double);
+        }
 
-    }
+    };
     /**
      * @param {array}
      * @private
@@ -122,7 +122,7 @@ const loremBase = function(){
      */
     const _formArray = function(arr){
         return arr[Math.floor(Math.random()*arr.length)];
-    }
+    };
     /**
      * @param {integer}
      * @private
@@ -132,7 +132,7 @@ const loremBase = function(){
         if(typeof size === 'undefined')
             return size = Math.floor(Math.random()*6)+3;
         return size;
-    }
+    };
     /**
      * @param {integer}
      * @private
@@ -153,12 +153,12 @@ const loremBase = function(){
             );
         _type = _formArray(['single','multi']);
         while(true){
-             if(word.length+2 > size)
-                 word +=  _one();
-             else
-                 word += _any();
-             if(word.length >= size)
-                 break;
+            if(word.length+2 > size)
+                word +=  _one();
+            else
+                word += _any();
+            if(word.length >= size)
+                break;
         }
         return word;
     };
@@ -168,8 +168,8 @@ const loremBase = function(){
      * @return {string}
      */
     const _firstUpper = function(word){
-       return word.charAt(0).toUpperCase()+word.slice(1);
-    }
+        return word.charAt(0).toUpperCase()+word.slice(1);
+    };
     /**
      * @param {integer}
      * @private
@@ -179,7 +179,7 @@ const loremBase = function(){
         if(typeof size === 'undefined')
             return size = Math.floor(Math.random()*18)+3;
         return size;
-    }
+    };
     /**
      * @param {integer}
      * @private
@@ -202,7 +202,7 @@ const loremBase = function(){
             _stence_end
         );
         return stence;
-    }
+    };
     /**
      * @param {integer}
      * @private
@@ -212,7 +212,7 @@ const loremBase = function(){
         if(typeof size === 'undefined')
             return size = Math.floor(Math.random()*18)+5;
         return size;
-    }
+    };
     /**
      * @param {integer}
      * @private
@@ -224,7 +224,7 @@ const loremBase = function(){
         for (let i = 1 ; size > i; i++)
             paragraph += ' '+_stence();
         return paragraph;
-    }
-}
+    };
+};
 
 exports.base = loremBase;
